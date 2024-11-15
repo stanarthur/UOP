@@ -28,6 +28,38 @@ public class TextAnalysisTool {
              }
          }
 
+          // Determine the most common character
+        char mostCommonChar = Collections.max(charFrequency.entrySet(), Map.Entry.comparingByValue()).getKey();
+        System.out.println("Most common character: '" + mostCommonChar + "'");
+        
+        // Character Frequency: Check frequency of a user-inputted character (case-insensitive)
+        System.out.print("Enter a character to check its frequency: ");
+        char targetChar = scanner.nextLine().toLowerCase().charAt(0);
+        long targetCharFrequency = textLower.chars().filter(c -> c == targetChar).count();
+        System.out.println("The character '" + targetChar + "' appears " + targetCharFrequency + " times.");
+        
+        // Word Frequency: Check frequency of a user-inputted word (case-insensitive)
+        System.out.print("Enter a word to check its frequency: ");
+        String targetWord = scanner.nextLine().toLowerCase();
+        int wordFrequency = 0;
+        
+        for (String word : words) {
+            if (word.toLowerCase().equals(targetWord)) {
+                wordFrequency++;
+            }
+        }
+        
+        System.out.println("The word '" + targetWord + "' appears " + wordFrequency + " times.");
+        
+        // Unique Words: Calculate the number of unique words (case-insensitive)
+        Set<String> uniqueWords = new HashSet<>();
+        for (String word : words) {
+            uniqueWords.add(word.toLowerCase());
+        }
+        
+        int uniqueWordCount = uniqueWords.size();
+        System.out.println("Number of unique words: " + uniqueWordCount);
+
         scanner.close();
         }
     }
